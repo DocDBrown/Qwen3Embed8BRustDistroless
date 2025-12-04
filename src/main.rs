@@ -387,3 +387,9 @@ fn internal_err<E: std::fmt::Display>(e: E) -> (StatusCode, String) {
     error!("internal error: {e}");
     (StatusCode::INTERNAL_SERVER_ERROR, e.to_string())
 }
+
+#[cfg(test)]
+mod tests_embeddings_api;
+
+#[cfg(test)]
+mod tests_server_and_pooling;
