@@ -1,0 +1,12 @@
+services:
+  qwen-embed:
+    image: qwen-embed
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8983:8983"
+    environment:
+      PORT: "8983"
+      RUST_LOG: "info,ort=info,qwen_embed_8_rs=info"
+    restart: unless-stopped
