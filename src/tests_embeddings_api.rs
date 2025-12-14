@@ -155,9 +155,7 @@ async fn test_embeddings_embedding_rows_match_batch_size() {
     };
 
     let batch_size = 5usize;
-    let texts: Vec<String> = (0..batch_size)
-        .map(|i| format!("row {}", i))
-        .collect();
+    let texts: Vec<String> = (0..batch_size).map(|i| format!("row {}", i)).collect();
 
     let req = EmbeddingsRequest {
         model: None,
