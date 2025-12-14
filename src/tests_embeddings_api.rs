@@ -1,13 +1,13 @@
 // src/tests_embeddings_api.rs
 
 use super::*;
-use anyhow::{anyhow, Result as AnyResult};
+use anyhow::{Result as AnyResult, anyhow};
 use axum::{
+    Json, Router,
     body::Body,
     extract::State,
     http::{Request, StatusCode},
     routing::post,
-    Json, Router,
 };
 use serde_json::json;
 use std::{path::PathBuf, sync::Arc};
@@ -149,9 +149,7 @@ async fn test_embeddings_embedding_rows_match_batch_size() {
     let state = match build_test_state() {
         Ok(s) => s,
         Err(e) => {
-            eprintln!(
-                "SKIP test_embeddings_embedding_rows_match_batch_size: {e}"
-            );
+            eprintln!("SKIP test_embeddings_embedding_rows_match_batch_size: {e}");
             return;
         }
     };
@@ -184,9 +182,7 @@ async fn test_embeddings_usage_token_counts_match_tokenizer_output() {
     let state = match build_test_state() {
         Ok(s) => s,
         Err(e) => {
-            eprintln!(
-                "SKIP test_embeddings_usage_token_counts_match_tokenizer_output: {e}"
-            );
+            eprintln!("SKIP test_embeddings_usage_token_counts_match_tokenizer_output: {e}");
             return;
         }
     };
