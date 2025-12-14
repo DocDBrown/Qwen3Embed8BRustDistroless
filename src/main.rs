@@ -186,7 +186,6 @@ async fn handle_embeddings(
         Tensor::from_array((shape, ids))
             .map_err(internal_err)?
             .into_dyn(),
-
     );
     by_name.insert(
         "attention_mask".to_string(),
