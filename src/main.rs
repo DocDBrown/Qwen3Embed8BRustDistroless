@@ -1,9 +1,9 @@
 // src/main.rs
-use anyhow::{anyhow, Context, Result};
-use axum::{extract::State, http::StatusCode, routing::post, Json, Router};
+use anyhow::{Context, Result, anyhow};
+use axum::{Json, Router, extract::State, http::StatusCode, routing::post};
 use half::f16;
 use ort::{
-    session::{builder::GraphOptimizationLevel, Session},
+    session::{Session, builder::GraphOptimizationLevel},
     value::{DynValue, Tensor},
 };
 use serde::{Deserialize, Serialize};
@@ -183,7 +183,10 @@ async fn handle_embeddings(
     let mut by_name: HashMap<String, DynValue> = HashMap::new();
     by_name.insert(
         "input_ids".to_string(),
-        Tensor::from_array((shape, ids)).map_err(internal_err)?.into_dyn(),
+        Tensor::from_array((shape, ids))
+            .map_err(internal_err)?
+            .into_dyn(),
+
     );
     by_name.insert(
         "attention_mask".to_string(),
@@ -214,7 +217,9 @@ async fn handle_embeddings(
     }
     by_name.insert(
         "position_ids".to_string(),
-        Tensor::from_array((shape, pos)).map_err(internal_err)?.into_dyn(),
+        Tensor::from_array((shape, pos))
+            .map_err(internal_err)?
+            .into_dyn(),
     );
 
     // Lock the session once, build inputs in declared order, then run.
