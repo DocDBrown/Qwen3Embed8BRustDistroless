@@ -1,7 +1,7 @@
 // src/tests_server_and_pooling.rs
 
 use super::*;
-use anyhow::{anyhow, Result as AnyResult};
+use anyhow::{Result as AnyResult, anyhow};
 use axum::http::StatusCode;
 use std::{path::PathBuf, sync::Arc};
 use tokio::sync::Mutex;
